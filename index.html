@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindYourHorror</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+    <main>
+        <header role="banner">
+            <h1>FindYourHorror</h1>
+        </header>
+        <section id="main-content" class="main-content">
+            <section id="horror-intro" class="horror-intro">
+                <h2>Looking for some new Horror?</h2>
+                <p>This app is here to help. Using a database of horror movies, we can get you scared and screaming right away.<br>
+                    All we need is some of your horror preferences. Are you looking for a monster movie? Or maybe a psycho killer kind of film? <br>
+                    You want to see the most modern effects with critical praise? Or maybe just a corny classic comfort Horror? <br>
+                    Whatever scare you desire, we will help you find it.
+                </p>
+                <button type="button" class="start-button button">Let's get scary.</button>
+            </section>
+            <section id="horror-subgenre" class="horror-subgenre hidden">
+                <div class="psycho-horror-main sub-genre-box">
+                    <h3>Psychological</h3>
+                    <p>Horrors of the Mind: Phobias, madness, and other mental disturbances</p>
+                    <button type="button" class="sub-button button">Display Options</button>
+                    <div class="psycho-horror-options options-box hidden">
+                            <input type="radio" id="phobia" name="genre-choice" value="Phobia" required>
+                            <label for="phobia">Phobia</label><br>
+                            <input type="radio" id="madness-paranoia" name="genre-choice" value="Madness & Paranoia" required>
+                            <label for="madness-paranoia">Madness & Paranoia</label><br>
+                            <input type="radio" id="survival" name="genre-choice" value="Survival" required>
+                            <label for="survival">Survival</label><br>
+                            <input type="radio" id="disturbing" name="genre-choice" value="Disturbing" required>
+                            <label for="disturbing">Disturbing</label><br>
+                    </div>
+                </div>
+                <div class="killer-horror-main sub-genre-box">
+                    <h3>Killer</h3>
+                    <p>Horrors of Man: Slashers, crimes and the stories of those criminals</p>
+                    <button type="button" class="sub-button button">Display Options</button>
+                    <div class="killer-horror-options options-box hidden">
+                            <input type="radio" id="slasher" name="genre-choice" value="Slasher" required> 
+                            <label for="slasher">Slasher</label><br>
+                            <input type="radio" id="crime" name="genre-choice" value="Crime" required>
+                            <label for="crime">Crime</label><br>
+                            <input type="radio" id="outsider-strange-people" name="genre-choice" value="Strange People & Outsiders" required>
+                            <label for="outsider-strange-people">Strange People & Outsiders</label><br>
+                    </div>
+                </div>
+                <div class="monster-horror-main sub-genre-box">
+                    <h3>Monster</h3>
+                    <p>Horrors of a Monster: Zombies, vampires, and all things that go bump in the night</p>
+                    <button type="button" class="sub-button button">Display Options</button>
+                    <div class="monster-horror-options options-box hidden">
+                            <input type="radio" id="zombie-infected" name="genre-choice" value="Zombies & Infected" required>
+                            <label for="zombie-infected">Zombies & Infected</label><br>
+                            <input type="radio" id="vampire" name="genre-choice" value="Vampire" required>
+                            <label for="vampire">Vampire</label><br>
+                            <input type="radio" id="werewolf" name="genre-choice" value="Werewolf" required>
+                            <label for="werewolf">Werewolf</label><br>
+                            <input type="radio" id="mythological-giant" name="genre-choice" value="Mythological & Giant Monsters" required>
+                            <label for="mythological-giant">Mythological & Giant Monsters</label><br>
+                            <input type="radio" id="sci-fi-alien" name="genre-choice" value="Sci-Fi & Aliens" required>
+                            <label for="sci-fi-alien">Sci-Fi & Aliens</label><br>
+                    </div>
+                </div>
+                <div class="para-horror-main sub-genre-box">
+                    <h3>Paranormal</h3>
+                    <p>Horrors of the Paranormal: Ghosts, possession, and tales of the occult</p>
+                    <button type="button" class="sub-button button">Display Options</button>
+                    <div class="para-horror-options options-box hidden">
+                            <input type="radio" id="ghosts-spirits" name="genre-choice" value="Ghosts & Spirits" required>
+                            <label for="ghosts-spirits">Ghosts & Spirits</label><br>
+                            <input type="radio" id="haunted-house" name="genre-choice" value="Haunted House" required>
+                            <label for="haunted-house">Haunted House</label><br>
+                            <input type="radio" id="demon-possession" name="genre-choice" value="Demons and Possesion" required>
+                            <label for="demon-possession">Demons and Possesion</label><br>
+                            <input type="radio" id="witch-occult" name="genre-choice" value="Witches & the Occult" required>
+                            <label for="witch-occult">Witches & the Occult</label><br>
+                            <input type="radio" id="supernatural" name="genre-choice" value="Supernatural" required>
+                            <label for="supernatural">Supernatural</label><br>
+                    </div>
+                </div>
+                <div class="details-box">
+                    <form>
+                        <h3>English-Only or All Languages?</h3>
+                        <input type="radio" id="en-only" name="language-choice" value='en-US' required> 
+                        <label for="en-only">English Only</label><br>
+                        <input type="radio" id="all-languages" name="language-choice" value='null' required> 
+                        <label for="all-languages">All Languages</label><br>
+                        <h3>When was the movie made?</h3>
+                        <label for="Year">Year:</label>
+                        <input type="number" id="movie-year" name="movie-year" min=1920 max=2020 ><br>
+                        <input type="radio" id="before" name="before-after-choice" value='before' required> 
+                        <label for="before">Before</label><br>
+                        <input type="radio" id="after" name="before-after-choice" value='after' required> 
+                        <label for="after">After</label><br>
+                        <h3>How well was it rated?</h3>
+                        <input type="radio" id="highly-rated" name="rating-choice" value='highly-rated' required> 
+                        <label for="highly-rated">Highly Rated</label><br>
+                        <input type="radio" id="well-rated" name="rating-choice" value='well-rated' required> 
+                        <label for="well-rated">Well Rated</label><br>
+                        <input type="radio" id="poorly-rated" name="rating-choice" value='poorly-rated' required> 
+                        <label for="poorly-rated">Poorly Rated</label><br>
+                    </form>
+                </div>
+                <button type="submit" id="search-button" class="search-button button">Find my Horror</button>
+            </section>
+
+            <section id="horror-results" class="horror-results hidden">
+                <p id="js-error-message" class="error-message"></p>
+                <div id='full-results' class='full-results hidden' >
+                    <h3>Search Results</h3>
+                    <img id='result-0-img' src=''>
+                    <p id='result-0-description'></p>
+                    <img id='result-1-img' src=''>
+                    <p id='result-1-description'></p>
+                    <img id='result-2-img' src=''>
+                    <p id='result-2-description'></p>
+                    <img id='result-3-img' src=''>
+                    <p id='result-3-description'></p>
+                    <img id='result-4-img' src=''>
+                    <p id='result-4-description'></p>
+                </div>
+                <button type="submit" id="see-more-button" class="see-more-button button">See more results</button>
+                <button type="submit" id="new-search-button" class="new-search-button">Try a new search</button>
+            </section>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
