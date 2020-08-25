@@ -81,14 +81,13 @@ const STORE = [
 
 function displayResults(responseJson){
     $('#full-results').removeClass('hidden')
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i <= 4; i++){
         let resultImgTarget = 'result-' + [i] + '-img'
         let resultImg = imageBaseURL + responseJson.results[i].poster_path
         let resultDescTarget = 'result-' + [i] + '-description'
         let resultDesc = responseJson.results[i].overview
         $('#' + resultImgTarget ).attr('src', resultImg)
         $('#' + resultDescTarget ).text(resultDesc)
-
     }
 }
 
@@ -100,19 +99,19 @@ function seeMoreClick(responseJson){
             $('#' + resultImgTarget ).empty('src')
             $('#' + resultDescTarget ).empty('p')
         }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+5].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
+        for (let y = 0; y < 4; y++){
+            let resultImgTarget = 'result-' + [y] + '-img'
+            let resultImg = imageBaseURL + responseJson.results[y+5].poster_path
+            let resultDescTarget = 'result-' + [y] + '-description'
+            let resultDesc = responseJson.results[y].overview
             $('#' + resultImgTarget ).attr('src', resultImg)
             $('#' + resultDescTarget ).text(resultDesc)
         }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+10].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
+        for (let z = 0; z < 4; z++){
+            let resultImgTarget = 'result-' + [z] + '-img'
+            let resultImg = imageBaseURL + responseJson.results[z+10].poster_path
+            let resultDescTarget = 'result-' + [z] + '-description'
+            let resultDesc = responseJson.results[z].overview
             $('#' + resultImgTarget ).attr('src', resultImg)
             $('#' + resultDescTarget ).text(resultDesc)
         }
@@ -210,8 +209,8 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
         if (responseJson.results.length === 0) {
             throw new Error('Uh Oh, try a new search')
         }
-        else if (responseJson.results.length < 4){
-            $('#see-more-button').hide();
+        else if (responseJson.total_results < 4){
+            $('button.see-more-button').hide();
         }
         displayResults(responseJson)
         seeMoreClick(responseJson)
