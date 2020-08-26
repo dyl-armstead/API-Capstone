@@ -80,6 +80,34 @@ const STORE = [
 // picture - responseJson.results[i].poster_path
 
 function displayResults(responseJson){
+    var resultHeader = `<h3>Search Results</h3>`
+    $('#full-results').append(resultHeader)
+    for (let i = 0; i <= 4; i++){
+        let checkImgResult = responseJson.results[i].poster_path
+        let checkDescResult = responseJson.results[i].overview
+        if (checkImgResult !== 'undefined' && checkDescResult !== 'undefined'){
+            let resultHtml = "<img id='result-" + i + "-img' src=''><p id='result-" + [i] + "-description'></p>"
+            let resultImgTarget = 'result-' + i + '-img'
+            let imgPath = responseJson.results[i].poster_path
+            let resultImg = imageBaseURL + imgPath
+            let resultDescTarget = 'result-' + i + '-description'
+            let resultDesc = responseJson.results[i].overview
+            $('#full-results').removeClass('hidden')
+            $('#full-results').append(resultHtml)
+            $('#' + resultImgTarget ).attr('src', resultImg)
+            $('#' + resultDescTarget ).text(resultDesc)
+        }
+        else {
+            $('#js-error-message').addClass('hidden')
+            $('#full-results').removeClass('hidden');
+            break;
+        }
+    }
+}
+
+
+
+/*function displayResults(responseJson){
     $('#full-results').removeClass('hidden')
     for (let i = 0; i <= 4; i++){
         let resultImgTarget = 'result-' + [i] + '-img'
@@ -89,66 +117,33 @@ function displayResults(responseJson){
         $('#' + resultImgTarget ).attr('src', resultImg)
         $('#' + resultDescTarget ).text(resultDesc)
     }
-}
+}*/
 
 function seeMoreClick(responseJson){
-    $('#horror-results').on('click', '.see-more-button', function (event){
-        for (let x = 0; x < 5; x++){
-            let resultImgTarget = 'result-' + [x] + '-img'
-            let resultDescTarget = 'result-' + [x] + '-description'
-            $('#' + resultImgTarget ).empty('src')
-            $('#' + resultDescTarget ).empty('p')
-        }
-        for (let y = 0; y < 4; y++){
-            let resultImgTarget = 'result-' + [y] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[y+5].poster_path
-            let resultDescTarget = 'result-' + [y] + '-description'
-            let resultDesc = responseJson.results[y].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        for (let z = 0; z < 4; z++){
-            let resultImgTarget = 'result-' + [z] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[z+10].poster_path
-            let resultDescTarget = 'result-' + [z] + '-description'
-            let resultDesc = responseJson.results[z].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+15].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+20].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+25].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        for (let i = 0; i < 4; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultImg = imageBaseURL + responseJson.results[i+30].poster_path
-            let resultDescTarget = 'result-' + [i] + '-description'
-            let resultDesc = responseJson.results[i].overview
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-    })     
-}
+
+        let amountOfClicks = 0
+    $('#horror-results').on('click', '.see-more-button', function (){ 
+        ++amountOfClicks;
+        var totalMovies = responseJson.total_results
+        let startPoint = 4
+        let totalClicks = amountOfClicks + startPoint
+        if(totalClicks < totalMovies){
+            let newResultHtml = "<img id='result-" + [amountOfClicks+4] + "-img' src=''><p id='result-" + [amountOfClicks+4] + "-description'></p>"
+            let newImgID = 'result-' + [amountOfClicks+4] + '-img'
+            let newImg = imageBaseURL + responseJson.results[amountOfClicks+4].poster_path
+            let newDescID = 'result-' + [amountOfClicks+4] + '-description'
+            let newDesc = responseJson.results[amountOfClicks+4].overview
+            $('#full-results').append(newResultHtml)
+            $('#' + newImgID).attr('src', newImg)
+            $('#' + newDescID).text(newDesc)
+        }else if (totalClicks = totalMovies){
+            amountOfClicks = 0
+            $('button.see-more-button').hide()
+            $('#end-of-results').removeClass('hidden')
+            }
+        })
+    }
+
 /*
 function removeSeeMore(responseJson){
     if(responseJson.results.length < 4){
@@ -159,13 +154,10 @@ function removeSeeMore(responseJson){
 
 function tryNewSearch(){
     $('#horror-results').on('click', '.new-search-button', function (event){
-        for (let i = 0; i < 5; i++){
-            let resultImgTarget = 'result-' + [i] + '-img'
-            let resultDescTarget = 'result-' + [i] + '-description'
-            $('#' + resultImgTarget ).empty('src')
-            $('#' + resultDescTarget ).empty('p')
-        }
+        $('#full-results').empty();
         $('#js-error-message').empty();
+        $('#end-of-results').addClass('hidden')
+        $('button.see-more-button').show()
         $('#horror-results').addClass('hidden');
         $('#horror-subgenre').removeClass('hidden');
         });
@@ -206,8 +198,8 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
       throw new Error(response.statusText);
     })
     .then(responseJson => {
-        if (responseJson.results.length === 0) {
-            throw new Error('Uh Oh, try a new search')
+        if (responseJson.total_results === 0) {
+            throw new Error("We didn't find any movies, try a new search")
         }
         else if (responseJson.total_results < 4){
             $('button.see-more-button').hide();
@@ -223,9 +215,8 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
 }
 
 
-
-
 // functions that move from page to page
+
 function startHorror(){
     $('.horror-intro').on('click', '.start-button', function (event){
         event.preventDefault();
@@ -243,18 +234,6 @@ function revealOptions(){
         console.log('revealOptions ran')
     })
 }
-
-/*function selectGenre(){
-    $('.options-box').on('click', '.genre-button', function (event){
-        event.preventDefault();
-        const subGenre = $("input[name='genre-choice']:checked").val()
-        $('#horror-subgenre').addClass('hidden');
-        $('#horror-results').removeClass('hidden');
-        console.log(subGenre);
-        return checkGenreIds(subGenre);
-    })
-}*/
-
 
 function selectDetails(){
     $('#horror-subgenre').on('click', '.search-button', function (event){
@@ -281,6 +260,7 @@ function selectDetails(){
     })
     
 }
+
 //functions that will take input to create api fetch
 
 function checkGenreIds(subGenre){
@@ -292,55 +272,6 @@ function checkGenreIds(subGenre){
     }
     return keywords
 }
-    /*if (subGenre = "Phobia"){
-        keywords += STORE[0].ids
-    } else if (subGenre === "Madness & Paranoia"){
-        let keywords = STORE[1].ids
-    } else if (subGenre === "Survival"){
-        let keywords = STORE[2].ids
-    } else if (subGenre === "Disturbing"){
-        let keywords = STORE[3].ids
-    } else if (subGenre === "Slasher"){
-        let keywords = STORE[4].ids
-    } else if (subGenre === "Crime"){
-        let keywords = STORE[5].ids
-        return keywords
-    } else if (subGenre === "Strange People & Outsiders"){
-        let keywords = STORE[6].ids
-        return keywords
-    } else if (subGenre === "Zombies & Infected"){
-        let keywords = STORE[7].ids
-        return keywords
-    } else if (subGenre === "Vampire"){
-        let keywords = STORE[8].ids
-        return keywords
-    } else if (subGenre === "Werewolf"){
-        let keywords = STORE[9].ids
-        return keywords
-    } else if (subGenre === "Mythological & Giant Monsters"){
-        let keywords = STORE[10].ids
-        return keywords
-    } else if (subGenre === "Sci-Fi & Aliens"){
-        let keywords = STORE[11].ids
-        return keywords
-    } else if (subGenre === "Ghosts & Spirits"){
-        let keywords = STORE[12].ids
-        return keywords
-    } else if (subGenre === "Haunted House"){
-        let keywords = STORE[13].ids
-        return keywords
-    } else if (subGenre === "Demons and Possesion"){
-        let keywords = STORE[14].ids
-        return keywords
-    } else if (subGenre === "Witches & the Occult"){
-        let keywords = STORE[15].ids
-        return keywords
-    } else if (subGenre === "Supernatural"){
-        let keywords = STORE[16].ids
-        return keywords
-    } 
-    return keywords*/
-
 
 function checkLanguage(langChoice){
     if (langChoice === 'en-US'){
