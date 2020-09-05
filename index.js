@@ -10,7 +10,7 @@ const STORE = [
     },
     {
         class: 'Madness & Paranoia',
-        ids: "2340|3301|9758|10410|193227|12565|3030|13073|41410|215015|3713|209141|447|3298|10937|173077|2833|6255|4142'"
+        ids: "2340|3301|9758|10410|193227|12565|3030|41410|215015|3713|209141|447|3298|10937|173077|2833|6255|4142'"
     },
     {
         class: 'Survival',
@@ -38,7 +38,7 @@ const STORE = [
     },
     {
         class: 'Vampire',
-        ids: "3133|11221|179860|272|9668|157185|9261274"
+        ids: "3133|179860|272|9668|157185|9261274"
     },
     {
         class: 'Werewolf',
@@ -79,87 +79,91 @@ const STORE = [
 // overview - responseJson.results[i].overview
 // picture - responseJson.results[i].poster_path
 
-function displayResults(responseJson){
+const RESULT_STOP = 4
+
+function appendResults(i, currentResponse){
+    let resultHtml = "<div class=result-item><item class='title-item'><h4 id='result-" + i + "-title'></h4></item><div class='result-content'><img id='result-" + i + "-img' src='' class='float'><p id='result-" + i + "-description' class='result-description'></p></div></div>"
+    let resultTitleTarget = 'result-' + i + '-title'
+    let resultTitle = currentResponse.results[i].original_title
+    let resultImgTarget = 'result-' + i + '-img'
+    let imgPath = currentResponse.results[i].poster_path
+    let resultImg = imageBaseURL + imgPath
+    let resultDescTarget = 'result-' + i + '-description'
+    let resultDesc = currentResponse.results[i].overview
+    
+    $('#full-results').show();
+    $('#full-results').append(resultHtml)
+    $('#' + resultTitleTarget ).text(resultTitle)
+    $('#' + resultImgTarget ).attr('src', resultImg)
+    $('#' + resultDescTarget ).text(resultDesc)
+}
+
+function displayResults(currentResponse){
+    $('#end-of-results').hide()
     var resultHeader = `<h3>Search Results</h3>`
     $('#full-results').append(resultHeader)
-    for (let i = 0; i <= 4; i++){
-        let checkImgResult = responseJson.results[i].poster_path
-        let checkDescResult = responseJson.results[i].overview
-        if (checkImgResult !== 'undefined' && checkDescResult !== 'undefined'){
-            let resultHtml = "<img id='result-" + i + "-img' src=''><p id='result-" + [i] + "-description'></p>"
-            let resultImgTarget = 'result-' + i + '-img'
-            let imgPath = responseJson.results[i].poster_path
-            let resultImg = imageBaseURL + imgPath
-            let resultDescTarget = 'result-' + i + '-description'
-            let resultDesc = responseJson.results[i].overview
-            $('#full-results').removeClass('hidden')
-            $('#full-results').append(resultHtml)
-            $('#' + resultImgTarget ).attr('src', resultImg)
-            $('#' + resultDescTarget ).text(resultDesc)
-        }
-        else {
-            $('#js-error-message').addClass('hidden')
-            $('#full-results').removeClass('hidden');
-            break;
+    if (currentResponse.total_results < RESULT_STOP){
+        for(let i = 0; i < currentResponse.total_results; i++){
+            appendResults(i, currentResponse)
         }
     }
+    else if (currentResponse.total_results > RESULT_STOP){
+        for (let i = 0; i <= RESULT_STOP; i++){
+            appendResults(i, currentResponse)
+        }
+    } else {
+            $('#js-error-message').hide();
+            $('#full-results').show();
+        }
 }
 
+function seeMoreClick(currentResponse){
 
-
-/*function displayResults(responseJson){
-    $('#full-results').removeClass('hidden')
-    for (let i = 0; i <= 4; i++){
-        let resultImgTarget = 'result-' + [i] + '-img'
-        let resultImg = imageBaseURL + responseJson.results[i].poster_path
-        let resultDescTarget = 'result-' + [i] + '-description'
-        let resultDesc = responseJson.results[i].overview
-        $('#' + resultImgTarget ).attr('src', resultImg)
-        $('#' + resultDescTarget ).text(resultDesc)
-    }
-}*/
-
-function seeMoreClick(responseJson){
-
-        let amountOfClicks = 0
-    $('#horror-results').on('click', '.see-more-button', function (){ 
-        ++amountOfClicks;
-        var totalMovies = responseJson.total_results
-        let startPoint = 4
+    var amountOfClicks = 1
+    $("#horror-results").on('click', '.see-more-button', function (){
+        amountOfClicks++; 
+        let startPoint = RESULT_STOP
         let totalClicks = amountOfClicks + startPoint
-        if(totalClicks < totalMovies){
-            let newResultHtml = "<img id='result-" + [amountOfClicks+4] + "-img' src=''><p id='result-" + [amountOfClicks+4] + "-description'></p>"
-            let newImgID = 'result-' + [amountOfClicks+4] + '-img'
-            let newImg = imageBaseURL + responseJson.results[amountOfClicks+4].poster_path
-            let newDescID = 'result-' + [amountOfClicks+4] + '-description'
-            let newDesc = responseJson.results[amountOfClicks+4].overview
-            $('#full-results').append(newResultHtml)
-            $('#' + newImgID).attr('src', newImg)
-            $('#' + newDescID).text(newDesc)
-        }else if (totalClicks = totalMovies){
-            amountOfClicks = 0
-            $('button.see-more-button').hide()
-            $('#end-of-results').removeClass('hidden')
+        var totalMovies = currentResponse.total_results
+        if(totalClicks < totalMovies && totalClicks < 20){
+            let newResultHtml = "<div class=result-item><item class='title-item'><h4 id='result-" + [amountOfClicks+RESULT_STOP] + "-title'></h4></item><div class='result-content'><img id='result-" + [amountOfClicks+RESULT_STOP] + "-img' src='' class='float'><p id='result-" + [amountOfClicks+RESULT_STOP] + "-description' class='result-description'></p></div></div>"
+            let newTitleID = 'result-' + [amountOfClicks+RESULT_STOP] + '-title'
+            let newTitle = currentResponse.results[amountOfClicks+RESULT_STOP].original_title
+            let newImgID = 'result-' + [amountOfClicks+RESULT_STOP] + '-img'
+            let newImg = imageBaseURL + currentResponse.results[amountOfClicks+RESULT_STOP].poster_path
+            let newDescID = 'result-' + [amountOfClicks+RESULT_STOP] + '-description'
+            let newDesc = currentResponse.results[amountOfClicks+RESULT_STOP].overview
+            $('#full-results').append(newResultHtml);
+            $('#' + newTitleID).text(newTitle)
+            $('#' + newImgID).attr('src', newImg);
+            $('#' + newDescID).text(newDesc);
+        }else {
+            if($(window).width() >= 769){
+                amountOfClicks = 1
+                $('button.see-more-button').hide()
+                $('button.new-search-button').css('margin-left', '40%')
+                $('#end-of-results').show();
+            }else{
+                amountOfClicks = 1
+                $('button.see-more-button').hide()
+                $('button.new-search-button').css('margin-left', '33%')
+                $('#end-of-results').show();
             }
-        })
-    }
-
-/*
-function removeSeeMore(responseJson){
-    if(responseJson.results.length < 4){
-        $('#see-more-button').empty();
-    }
+        }
+    })
 }
-*/
+
 
 function tryNewSearch(){
-    $('#horror-results').on('click', '.new-search-button', function (event){
+    $('#horror-results').on('click', '.new-search-button', function (){
+        delete currentResponse
         $('#full-results').empty();
         $('#js-error-message').empty();
-        $('#end-of-results').addClass('hidden')
+        $('#end-of-results').hide();
         $('button.see-more-button').show()
-        $('#horror-results').addClass('hidden');
-        $('#horror-subgenre').removeClass('hidden');
+        $('#horror-results').hide();
+        $('#horror-subgenre').show();
+        $('button.new-search-button').css('margin-left', '10%')
         });
 };
 
@@ -178,7 +182,7 @@ function formatQueryParams(params) {
 
 
 function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie){
-  const params = {
+  const PARAMS = {
     language: langCheck,
     'primary_release_date.gte': after,
     'primary_release_date.lte': before,
@@ -187,7 +191,7 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
     with_keywords: keywords,
     api_key: apiKey,
   };
-  const queryString = formatQueryParams(params)
+  const queryString = formatQueryParams(PARAMS)
   const url = discoverURL + '?' + defaultHorrorSearch + '&' + queryString;
 
   fetch(url)
@@ -198,43 +202,87 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
       throw new Error(response.statusText);
     })
     .then(responseJson => {
+        let currentResponse = responseJson
         if (responseJson.total_results === 0) {
             throw new Error("We didn't find any movies, try a new search")
         }
-        else if (responseJson.total_results < 4){
+        else if (currentResponse.total_results < 4){
             $('button.see-more-button').hide();
         }
-        displayResults(responseJson)
-        seeMoreClick(responseJson)
+        $("#horror-results").unbind('click');
+        displayResults(currentResponse)
+        seeMoreClick(currentResponse)
+        tryNewSearch()
     })
     .catch(err => {
-      $('#js-error-message').removeClass('hidden');
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
-      $('#full-results').addClass('hidden');
+        if($(window).width() >= 769){
+            $('#js-error-message').show();
+            $('#js-error-message').css('text-align', 'center')
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            $('#end-of-results').hide();
+            $('button.see-more-button').hide();
+            $('button.new-search-button').css('margin-left', '40%')
+            $('#full-results').hide();
+            tryNewSearch()
+        }else{
+            $('#js-error-message').show();
+            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            $('#end-of-results').hide();
+            $('button.see-more-button').hide();
+            $('button.new-search-button').css('margin-left', '33%')
+            $('#full-results').hide();
+            tryNewSearch()
+        }
+            
     });
+    
 }
 
 
 // functions that move from page to page
 
 function startHorror(){
+    $('#horror-subgenre').hide();
+    $('#horror-results').hide();
+    $('#full-results').hide();
     $('.horror-intro').on('click', '.start-button', function (event){
         event.preventDefault();
-        $('#horror-intro').addClass('hidden');
-        $('#horror-subgenre').removeClass('hidden');
+        $('#horror-intro').hide();
+        $('#horror-subgenre').show();
+        if($(window).width() >= 769){
+            $('header').css('padding-bottom','10%')
+            $('header').css('padding-top','1%')
+            $('.logo').css('order','1')
+            $('.logo').css('margin-top','0%')
+            $('.logo').css('margin-left','1%')
+            $('.logo').css('padding-right','auto')
+            $('.logo').css('padding-left','1%')
+            $('.logo').css('padding-top','0%')
+            $('.logo').css('width','15%')
+            $('.logo').css('height','15%')
+            $('header').css('display','flex')
+            $('header').css('flex-direction','row')
+            $('header').css('align-content','space-between')
+            $('header').css('margin','0%')
+            $('.moon').css('display','flex')
+            $('.moon').css('padding-left','33%')
+            $('.moon').css('order','2')
+            $('.moon').css('width','30%')
+            $('.moon').css('height','30%')
+        }
         console.log('startHorror ran')
     })
 }
 
 function revealOptions(){
-    $('.sub-genre-box').on('click', '.sub-button', function (event){
-        event.preventDefault();
-        $(event.currentTarget).next('div')
-        .toggleClass('hidden')
-        console.log('revealOptions ran')
-    })
+    $("div.hidden").hide();
+    $("button.hide,h3").click(function () {
+    var target = $(this).is('h3') ? $(this).next("div.hidden") : $(this).parents("div.hidden");
+    target.slideToggle("slow");
+    console.log('revealOptions ran')
+    });
 }
-
+        
 function selectDetails(){
     $('#horror-subgenre').on('click', '.search-button', function (event){
         event.preventDefault();
@@ -243,18 +291,24 @@ function selectDetails(){
         const beforeOrAfter = $("input[name='before-after-choice']:checked").val()
         const movieYear = $('#movie-year').val()
         const movieRating = $("input[name='rating-choice']:checked").val();
-        $('#horror-subgenre').addClass('hidden');
-        $('#horror-results').removeClass('hidden');
-        console.log(subGenre)
-        console.log(langChoice)
-        console.log(beforeOrAfter)
-        console.log(movieYear)
-        console.log(movieRating)
+        $('#horror-subgenre').hide();
+        $('#horror-results').show();
+        if($(window).width() >= 769){
+            $('header').css('padding-bottom','5%')
+            $('.see-more-button').css('margin-left','25%')
+            $('.see-more-button').css('padding','1% 6%')
+            $('.new-search-button').css('margin-left','10%')
+            $('.new-search-button').css('padding','1% 6%')
+            $('.moon').css('width','17%')
+            $('.moon').css('height','17%')
+
+        }
+        console.log(subGenre,langChoice,beforeOrAfter,movieYear,movieRating)
         let keywords = checkGenreIds(subGenre)
         let langCheck = checkLanguage(langChoice);
         let before = checkMovieYear(beforeOrAfter, movieYear)[0];
         let after = checkMovieYear(beforeOrAfter, movieYear)[1];
-        let lowMovie = checkMovieRating(movieRating)[0];
+        let lowMovie = checkMovieRating(movieRating)[0]
         let highMovie = checkMovieRating(movieRating)[1];
         getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie)
     })
@@ -274,14 +328,7 @@ function checkGenreIds(subGenre){
 }
 
 function checkLanguage(langChoice){
-    if (langChoice === 'en-US'){
-        let langCheck = 'en-US'
-        return langCheck 
-    }
-    else{
-        let langCheck = ''
-        return langCheck
-    }
+    return langChoice === 'en-US' ? 'en-US':''
 }
 
 function checkMovieYear(beforeOrAfter, movieYear){
@@ -300,17 +347,17 @@ function checkMovieYear(beforeOrAfter, movieYear){
 
 function checkMovieRating(movieRating){
     if (movieRating === 'highly-rated'){
-        let lowMovie = 10;
-        let highMovie = 7;
-        return [lowMovie, highMovie]
+        let low = 10
+        let high =7
+        return [low, high]
     }else if (movieRating === 'well-rated'){
-        let lowMovie = 6.9
-        let highMovie = 4
-        return [lowMovie, highMovie]
+        let low = 6.9
+        let high = 4
+        return [low, high]
     } else {
-        let lowMovie = 3.9
-        let highMovie = 0
-        return [lowMovie, highMovie]
+        let low = 3.9
+        let high = 0
+        return [low, high]
     }
 }
 
@@ -319,7 +366,6 @@ function runHorrorApp(){
     startHorror();
     revealOptions();
     selectDetails();
-    tryNewSearch();
 }
 
 runHorrorApp();

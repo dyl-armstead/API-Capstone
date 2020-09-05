@@ -1,7 +1,398 @@
-.hidden {
-    display: none;
+html { 
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+  max-width: 470px;
+  max-height: 812px;
+}
+
+header > img{
+  display: block;
+  margin-top:0%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0%;
+  width: 30%;
+}
+
+.moon{
+  padding-left:55%;
+  padding-top:0%;
+  width: 50%;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  color:yellow;
+  background-color:black;
+}
+
+h1,h2,h3,h4{
+  font-family: 'Roboto Slab', serif;
+}
+
+p,label{
+  font-family: 'Roboto Slab', serif;
+  font-size: small;
+}
+
+.horror-intro{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+.horror-intro > h1{
+  display: block;
+  text-align: center;
+  font-size: medium;
+}
+
+.horror-intro > p{
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0%;
+  padding-right: 0%;
+  font-size: small;
+}
+
+.start-button{
+  background-color: yellow;
+  color: black;
+  display: block;
+  margin-top:7%;
+  margin-bottom:7%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3% 16%;
+  border-radius: 12px;
+}
+
+.horror-subgenre{
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.sub-genre-exp{
+  text-align:left;
+  width: 80%;
+  padding:0% 12%;
+}
+
+.sub-genre-selection{
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.sub-genre-box{
+  width: 80%;
+  padding:1% 1%;
+  text-align:center;
+}
+
+.sub-genre-box h3{
+text-align: center;
+margin:1%
+}
+
+.sub-genre-box p{
+  margin:5%;
   }
 
-div{
-    border: 1px solid black;
+.options-box{
+  padding:3% 0%;
+  text-align:left;
+  display:inline-block;
+}
+
+.details-selection{
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.sub-details-box{
+  padding-bottom: 3%;
+  padding-right: 3%;
+  text-align: center;
+}
+
+.sub-details-box h3{
+  text-align:center;
+}
+
+.sub-details-box .option-item{
+display:inline-flex;
+margin-right: 8%;
+padding-right: 8%;
+}
+
+.sub-details-box label{
+  padding-right: 2%;
+  padding-left: 3%;
+}
+
+
+.detail-header{
+  font-size: medium;
+}
+
+.horror-subgenre .search-button{
+  text-align:center;
+  margin-left: 21%;
+  margin-right: auto;
+  margin-top: 3%;
+  padding: 3% 16%;
+  border-radius: 12px;
+  background-color: yellow;
+}
+
+.full-results{
+  display:flex;
+  flex-direction:column;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.full-results h3{
+  text-align: center;
+  margin-top:0%;
+}
+
+.full-results h4{
+  text-decoration: underline;
+}
+
+.full-results .result-item{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  margin:0%;
+  padding:0% 3% 0% 3%;
+  background-color: black;
+}
+
+.result-content{
+  text-align: left;
+  width:100%;
+}
+
+.result-content img{
+  padding:1%;
+}
+
+.result-description{
+  margin:0%;
+}
+
+.float{
+  float: left;
+}
+
+
+.horror-results img{
+  width:40%;
+  height:40%;
+  margin:0%;
+}
+
+.end-of-results{
+  text-align:center;
+}
+
+.horror-results .see-more-button, .new-search-button{
+  text-align:center;
+  margin-left: 10%;
+  margin-right: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding: 3%;
+  border-radius: 12px;
+  background-color: yellow;
+}
+
+@media only screen and (min-width: 430px){ 
+
+  .horror-subgenre .search-button{
+    text-align:center;
+    margin-left: 24%;
+    margin-right: auto;
+    margin-top: 3%;
+    padding: 3% 16%;
+  }
+
+  .see-more-button{
+    text-align:center;
+    margin-left: 16%;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 3%;
+  }
+
+  .new-search-button{
+    text-align:center;
+    margin-left: 16%;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 3%;
+  }
+}
+
+@media only screen and (min-width: 500px){
+
+  body{
+    padding-right:20%;
+    padding-left:20%;
+  }
+}
+
+
+@media only screen and (min-width: 769px){
+
+  body{
+    margin: 0px;
+    padding: 0px;
+    height:100%;
+    width:100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  h1,h2,h3,h4{
+    font-size: x-large;
+  }
+  
+  p,label{
+    font-size:large;
+  }
+  
+
+  .horror-intro > h1{
+    font-size: x-large;
+  }
+
+  .horror-intro > p{
+    font-size: large;
+  }
+
+  header{
+    padding-bottom:0%;
+  }
+
+  
+  header > .logo{
+    display: block;
+    margin-top:15%;
+    margin-left: 33%;
+    margin-right: 33%;
+    width: 35%;
+  }
+
+  .moon{
+    display:none;
+    padding-left:95%;
+    padding-top:0%;
+    width: 100%;
+  }
+
+  .horror-intro{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding:0%;
+  }
+
+  .start-button{
+    margin-top: 1%;
+    padding: 2% 8%;
+  }
+
+  .horror-subgenre{
+    margin-bottom: 15%;
+    padding-bottom: 15%;
+  }
+
+
+  .sub-genre-selection{
+    display:flex;
+    flex-direction:row;
+    align-content: center;
+    justify-content: space-around;
+  }
+  
+  .sub-genre-exp{
+    text-align:center;
+    margin: 1% 1% 3% 1%;
+    padding:0% 0%;
+    width:100%;
+  }
+
+  .sub-genre-selection{
+    display:flex;
+    flex-direction:row;
+    margin-bottom: 3%;
+  }
+
+  .sub-genre-box{
+    width:22%;
+    padding:0%
+  }
+  
+  .details-selection{
+    display:flex;
+    flex-direction:row;
+  }
+
+  .sub-details-box{
+    width:30%;
+  }
+
+  .horror-subgenre .search-button{
+    text-align:center;
+    margin-left: 40%;
+    margin-right: auto;
+    margin-top: 1%;
+    padding: 1% 6%;
+    border-radius: 12px;
+    background-color: yellow;
+  }
+
+  .full-results{
+    display:flex;
+    flex-direction:column
+
+  }
+
+  .full-results h3{
+    width:100%;
+    margin:0%;
+  }
+
+  .result-item{
+    width:60%;
+    height:30%;
+    align-items:center;
+  }
+
+  .result-item img{
+    width:20%;
+    height:10%;
+  }
+
 }

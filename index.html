@@ -5,30 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FindYourHorror</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Mina&family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <header role="banner">
-            <h1>FindYourHorror</h1>
+            <img class="moon" src='images/moon_background.gif' alt="Full Moon">
+            <img class="logo" src='images/lead-image.png' alt="Find Your Horror">
         </header>
         <section id="main-content" class="main-content">
             <section id="horror-intro" class="horror-intro">
-                <h2>Looking for some new Horror?</h2>
-                <p>This app is here to help. Using a database of horror movies, we can get you scared and screaming right away.<br>
-                    All we need is some of your horror preferences. Are you looking for a monster movie? Or maybe a psycho killer kind of film? <br>
-                    You want to see the most modern effects with critical praise? Or maybe just a corny classic comfort Horror? <br>
-                    Whatever scare you desire, we will help you find it.
+                <h1>Looking for some new Horror?</h1>
+                <p>This app is here to help. Using a database of horror movies, we will have you scared and screaming right away.
+                    All we need is your horror preferences. Are you looking for a monster movie? Or a psycho killer kind of film? 
+                    You want modern movie effects that receive high praise? Or maybe just a corny classic horror? 
+                    Whatever scare, we can help you find it.
                 </p>
-                <button type="button" class="start-button button">Let's get scary.</button>
+                <button type="button" class="start-button button">Start your search</button>
             </section>
             <section id="horror-subgenre" class="horror-subgenre hidden">
-                <p>Pick one option from a sub-genre, then select additional details below to find the horror you are looking for.</p>
+                <p class='sub-genre-exp'>Click a sub-genre and select one drop-down option. Then select additional details below to find the horror you are looking for.</p>
                 <form id="movie-details">
-                    <fieldset>
+                    <div class='sub-genre-selection'>
                         <div class="psycho-horror-main sub-genre-box">
                             <h3>Psychological</h3>
-                            <p>Horrors of the Mind: Phobias, madness, and other mental disturbances</p>
-                            <button type="button" class="sub-button button">Display Options</button>
                             <div class="psycho-horror-options options-box hidden">
                                 <input type="radio" id="phobia" name="genre-choice" value="Phobia" required>
                                 <label for="phobia">Phobia</label><br>
@@ -41,9 +41,7 @@
                             </div>
                         </div>
                         <div class="killer-horror-main sub-genre-box">
-                            <h3>Killer</h3>
-                            <p>Horrors of Man: Slashers, crimes and the stories of those criminals</p>
-                            <button type="button" class="sub-button button">Display Options</button>
+                            <h3>Killers</h3>
                             <div class="killer-horror-options options-box hidden">
                                 <input type="radio" id="slasher" name="genre-choice" value="Slasher" required> 
                                 <label for="slasher">Slasher</label><br>
@@ -54,9 +52,7 @@
                             </div>
                         </div>
                         <div class="monster-horror-main sub-genre-box">
-                            <h3>Monster</h3>
-                            <p>Horrors of a Monster: Zombies, vampires, and all things that go bump in the night</p>
-                            <button type="button" class="sub-button button">Display Options</button>
+                            <h3>Monsters</h3>
                             <div class="monster-horror-options options-box hidden">
                                 <input type="radio" id="zombie-infected" name="genre-choice" value="Zombies & Infected" required>
                                 <label for="zombie-infected">Zombies & Infected</label><br>
@@ -72,8 +68,6 @@
                         </div>
                         <div class="para-horror-main sub-genre-box">
                             <h3>Paranormal</h3>
-                            <p>Horrors of the Paranormal: Ghosts, possession, and tales of the occult</p>
-                            <button type="button" class="sub-button button">Display Options</button>
                             <div class="para-horror-options options-box hidden">
                                 <input type="radio" id="ghosts-spirits" name="genre-choice" value="Ghosts & Spirits" required>
                                 <label for="ghosts-spirits">Ghosts & Spirits</label><br>
@@ -87,38 +81,57 @@
                                 <label for="supernatural">Supernatural</label><br>
                             </div>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="details-box">
-                            <h3>English-Only or All Languages?</h3>
-                            <input type="radio" id="en-only" name="language-choice" value='en-US' checked> 
-                            <label for="en-only">English Only</label><br>
-                            <input type="radio" id="all-languages" name="language-choice" value='null'> 
-                            <label for="all-languages">All Languages</label><br>
-                            <h3>When was the movie made?</h3>
-                            <label for="Year">Year:</label>
-                            <input type="number" id="movie-year" name="movie-year" min=1920 max=2020 placeholder="2020" required><br>
-                            <input type="radio" id="before" name="before-after-choice" value='before' checked> 
-                            <label for="before">Before</label><br>
-                            <input type="radio" id="after" name="before-after-choice" value='after'> 
-                            <label for="after">After</label><br>
-                            <h3>How well was it rated?</h3>
-                            <input type="radio" id="highly-rated" name="rating-choice" value='highly-rated'> 
-                            <label for="highly-rated">Highly Rated</label><br>
-                            <input type="radio" id="well-rated" name="rating-choice" value='well-rated' checked> 
-                            <label for="well-rated">Well Rated</label><br>
-                            <input type="radio" id="poorly-rated" name="rating-choice" value='poorly-rated'> 
-                            <label for="poorly-rated">Poorly Rated</label><br>
+                    </div>
+                     <div class="details-selection">
+                        <div class="language-select sub-details-box">
+                            <item>
+                                <h3 class="detail-header">English-Only or All Languages?</h3>
+                            </item>
+                            <item class="option-item">
+                                <input type="radio" id="en-only" name="language-choice" value='en-US' checked> 
+                                <label for="en-only">English</label><br>
+                                <input type="radio" id="all-languages" name="language-choice" value='null'> 
+                                <label for="all-languages">All</label><br>
+                            </item>
                         </div>
-                    </fieldset>
+                        <div class="year-select sub-details-box">
+                            <item>
+                                <h3 class="detail-header">When was the movie made?</h3>
+                            </item>
+                            <item class="option-item">
+                                <label for="Year">Year:</label>
+                                <input type="number" id="movie-year" name="movie-year" min=1920 max=2020 value=2020 required><br>
+                                <input type="radio" id="before" name="before-after-choice" value='before' checked> 
+                                <label for="before">Before</label><br>
+                                <input type="radio" id="after" name="before-after-choice" value='after'> 
+                                <label for="after">After</label><br>
+                            </item>
+                        </div>
+                        <div class="rating-select sub-details-box">
+                            <item>
+                                <h3 class="detail-header">How was its quality rated?</h3>
+                            </item>
+                            <item class="option-item">
+                                <input type="radio" id="highly-rated" name="rating-choice" value='highly-rated'> 
+                                <label for="highly-rated">Highly</label><br>
+                                <input type="radio" id="well-rated" name="rating-choice" value='well-rated' checked> 
+                                <label for="well-rated">Well</label><br>
+                                <input type="radio" id="poorly-rated" name="rating-choice" value='poorly-rated'> 
+                                <label for="poorly-rated">Poorly</label><br>
+                            </item>
+                        </div>
+                    </div>
+                </div>
                 </form>
+                <item class="search-button-container">
                 <button type="submit" id="search-button" class="search-button button">Find my Horror</button>
+                </item>
             </section>
 
             <section id="horror-results" class="horror-results hidden">
                 <p id="js-error-message" class="error-message"></p>
                 <div id='full-results' class='full-results hidden' ></div>
-                <button type="submit" id="see-more-button" class="see-more-button button">See more results</button>
+                <button type="submit" id="see-more-button" class="see-more-button button">Show next result</button>
                 <p id="end-of-results" class="end-of-results hidden">There are no more results, but try a new search!</p>
                 <button type="submit" id="new-search-button" class="new-search-button">Try a new search</button>
             </section>
