@@ -2,6 +2,8 @@
 
 https://dyl-armstead.github.io/FindYourHorror/
 
+![GitHub Logo](/images/README-Pic.png)
+
 This app is designed to help users find new horror movies based on preferences inside of the genre. 
 Using sub-genres and other defining factors, a user is able to find a more specific pool of movies based on specific interests.
 A user would pick a sub-genre, like Alien movies, then select the languages that they prefer, a timeline of when the movie was made, and how well the movie was rated.
