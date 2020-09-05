@@ -8,6 +8,8 @@ A user would pick a sub-genre, like Alien movies, then select the languages that
 They are then shown results based on their selections, and then are allowed to scroll through the results or try a new search.
 
 The technology used for this app includes HTML, CSS, JavaScript, and jQuery. 
+Base API - https://developers.themoviedb.org/3/discover/movie-discover
+API used to gather keywords - http://www.omdbapi.com/
 
 For reference to the STORE in app - 
 
