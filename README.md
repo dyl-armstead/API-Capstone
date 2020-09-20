@@ -8,12 +8,14 @@ This app is designed to help users find new horror movies based on preferences i
 Using sub-genres and other defining factors, a user is able to find a more specific pool of movies based on specific interests.
 A user would pick a sub-genre, like Alien movies, then select the languages that they prefer, a timeline of when the movie was made, and how well the movie was rated.
 They are then shown results based on their selections, and then are allowed to scroll through the results or try a new search.
+An additional API is used to add additional details about the movie to the results.
 
-The technology used for this app includes HTML, CSS, JavaScript, and jQuery. 
+# The technology used for this app includes HTML, CSS, JavaScript, and jQuery. 
 Base API - https://developers.themoviedb.org/3/discover/movie-discover
+Second API - https://api.themoviedb.org/3/movie/
 API used to gather keywords - http://www.omdbapi.com/
 
-For reference to the STORE in app - 
+# For reference to the STORE in app - 
 
 Psychological
 
