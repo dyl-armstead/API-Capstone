@@ -157,6 +157,10 @@ padding-right: 8%;
   padding-left: 3%;
 }
 
+.options-item input{
+  width: 75px;
+}
+
 
 .detail-header{
   font-size: medium;
@@ -335,7 +339,7 @@ padding-right: 8%;
   }
 
   header{
-    padding-bottom:0%;
+    padding-bottom:1%;
   }
 
   

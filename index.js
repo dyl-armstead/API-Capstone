@@ -355,7 +355,7 @@ function startHorror(){
         $('#horror-subgenre').show();
         revealOptions();
         if($(window).width() >= 769){
-            $('header').css('padding-bottom','10%')
+            $('header').css('padding-bottom','5%')
             $('header').css('padding-top','1%')
             $('.logo').css('order','1')
             $('.logo').css('margin-top','0%')
