@@ -178,12 +178,12 @@ function seeMoreClick(getMoviesResponse){
             if($(window).width() >= 769){
                 amountOfClicks = 1
                 $('button.see-more-button').hide()
-                $('button.new-search-button').css('margin-left', '40%')
+                $('button.new-search-button').addClass('new-search-button-big').removeClass('new-search-button')
                 $('#end-of-results').show();
             }else{
                 amountOfClicks = 1
                 $('button.see-more-button').hide()
-                $('button.new-search-button').css('margin-left', '33%')
+                $('button.new-search-button').addClass('new-search-button-small').removeClass('new-search-button')
                 $('#end-of-results').show();
             }
         }
@@ -219,7 +219,7 @@ function appendMoreResults(getMoviesResponse, getDetailsResponse, amountOfClicks
 
 
 function tryNewSearch(){
-    $('#horror-results').on('click', '.new-search-button', function (){
+    $('#horror-results').on('click', '#new-search-button', function (){
         delete getMoviesResponse
         $('#full-results').empty();
         $('#js-error-message').empty();
@@ -227,7 +227,11 @@ function tryNewSearch(){
         $('button.see-more-button').show()
         $('#horror-results').hide();
         $('#horror-subgenre').show();
-        $('button.new-search-button').css('margin-left', '10%')
+        $('#new-search-button').removeClass('center-button')
+        $('#new-search-button').removeClass('new-search-button-small')
+        $('#new-search-button').removeClass('new-search-button-smaller')
+        $('#new-search-button').removeClass('new-search-button-big')
+        $('#new-search-button').addClass('new-search-button')
         });
 };
 
@@ -289,7 +293,7 @@ function getHorrorMovies(keywords, langCheck, before, after, lowMovie, highMovie
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
             $('#end-of-results').hide();
             $('button.see-more-button').hide();
-            $('button.new-search-button').css('margin-left', '33%')
+            $('button.new-search-button').addClass('new-search-button-small').removeClass('new-search-button')
             $('#full-results').hide();
             tryNewSearch()
         }
@@ -355,33 +359,17 @@ function startHorror(){
         $('#horror-subgenre').show();
         revealOptions();
         if($(window).width() >= 769){
-            $('header').css('padding-bottom','5%')
-            $('header').css('padding-top','1%')
-            $('.logo').css('order','1')
-            $('.logo').css('margin-top','0%')
-            $('.logo').css('margin-left','1%')
-            $('.logo').css('padding-right','auto')
-            $('.logo').css('padding-left','1%')
-            $('.logo').css('padding-top','0%')
-            $('.logo').css('width','15%')
-            $('.logo').css('height','15%')
-            $('header').css('display','flex')
-            $('header').css('flex-direction','row')
-            $('header').css('align-content','space-between')
-            $('header').css('margin','0%')
-            $('.moon').css('display','flex')
-            $('.moon').css('padding-left','33%')
-            $('.moon').css('order','2')
-            $('.moon').css('width','30%')
-            $('.moon').css('height','30%')
+            $('.header-area').addClass('header-change')
+            $('.logo').addClass('logo-change')
+            $('.moon').addClass('moon-change')
         }
     })
 }
 
 function revealOptions(){
     $('form').find("div.hidden").hide();
-    $("button.hide,h3").click(function () {
-    var target = $(this).is('h3') ? $(this).next("div.hidden") : $(this).parents("div.hidden");
+    $("button.hide,h2").click(function () {
+    var target = $(this).is('h2') ? $(this).next("div.hidden") : $(this).parents("div.hidden");
     target.slideToggle("slow");
     });
 }
@@ -418,26 +406,26 @@ function addSubGenreOptions(){
     const subGenreForm = `<form id='movie-details'>
                         <div class='sub-genre-selection'>
                             <div class='psycho-horror-main sub-genre-box'>
-                                <h3>Psychological</h3>
+                                <h2>Psychological</h2>
                                     <div class='psycho-horror-options options-box hidden'></div>
                             </div>
                             <div class='killer-horror-main sub-genre-box'>
-                                <h3>Killers</h3>
+                                <h2>Killers</h2>
                                     <div class='killer-horror-options options-box hidden'></div>
                             </div>
                             <div class='monster-horror-main sub-genre-box'>
-                                <h3>Monsters</h3>
+                                <h2>Monsters</h2>
                                     <div class='monster-horror-options options-box hidden'></div>
                             </div>
                             <div class='para-horror-main sub-genre-box'>
-                                <h3>Paranormal</h3>
+                                <h2>Paranormal</h2>
                                     <div class='para-horror-options options-box hidden'></div>
                             </div>
                         </div>`   
     const endForm = `<div class="details-selection">
                         <div class="language-select sub-details-box">
                             <item>
-                                <h3 class="detail-header">English-Only or All Languages?</h3>
+                                <h2 class="detail-header">English-Only or All Languages?</h2>
                             </item>
                             <item class="option-item">
                                 <input type='radio' id="en-only" name="language-choice" value='en-US' checked> 
@@ -448,7 +436,7 @@ function addSubGenreOptions(){
                         </div>
                         <div class="year-select sub-details-box">
                             <item>
-                                <h3 class="detail-header">When was the movie made?</h3>
+                                <h2 class="detail-header">When was the movie made?</h2>
                             </item>
                             <item class="option-item">
                                 <label for="movie-year">Year:</label>
@@ -461,7 +449,7 @@ function addSubGenreOptions(){
                         </div>
                         <div class="rating-select sub-details-box">
                             <item>
-                                <h3 class="detail-header">How was its quality rated?</h3>
+                                <h2 class="detail-header">How was its quality rated?</h2>
                             </item>
                             <item class="option-item">
                                 <input type='radio' id="highly-rated" name="rating-choice" value='highly-rated'> 

@@ -103,18 +103,24 @@ p,label{
   justify-content: space-around;
 }
 
+.sub-genre-box > h2{
+  border: 1px;
+  border-style: solid;
+  border-radius: 40px;
+}
+
 .sub-genre-box{
   width: 80%;
   padding:1% 1%;
   text-align:center;
 }
 
-.sub-genre-box h3{
+.sub-genre-box h2{
 text-align: center;
 margin:1%
 }
 
-.sub-genre-box h3:hover{
+.sub-genre-box h2:hover{
   color: red;
   }
 
@@ -142,7 +148,7 @@ margin:1%
   text-align: center;
 }
 
-.sub-details-box h3{
+.sub-details-box h2{
   text-align:center;
 }
 
@@ -263,8 +269,26 @@ padding-right: 8%;
   border-radius: 40px;
 }
 
+.horror-results .center-button{
+  margin-left:33%;
+}
+
 .new-search-button:hover{
   background-color: rgba(255, 255, 0, 0.884);
+}
+
+.new-search-button-small{
+  margin-left:30%;
+  padding:1% 6%;
+  border-radius: 40px;
+  background-color: yellow;
+}
+
+.new-search-button-smaller{
+  margin-left:10%;
+  padding:1% 6%;
+  border-radius: 40px;
+  background-color: yellow;
 }
 
 .see-more-button:hover{
@@ -342,8 +366,17 @@ padding-right: 8%;
     padding-bottom:1%;
   }
 
+  .header-change{
+    padding-bottom: '5%';
+    padding-top:1%;
+    display:flex;
+    flex-direction:row;
+    align-content:space-between;
+    margin:0%;
+  }
+
   
-  header > .logo{
+  .logo{
     display: block;
     margin-top:15%;
     margin-left: 33%;
@@ -351,11 +384,30 @@ padding-right: 8%;
     width: 35%;
   }
 
+  .logo-change{
+    order:1;
+    margin-top:0%;
+    margin-left:1%;
+    padding-right:auto;
+    padding-left:1%;
+    padding-top:0%;
+    width:15%;
+    height:15%;
+  }
+
   .moon{
     display:none;
     padding-left:95%;
     padding-top:0%;
     width: 100%;
+  }
+
+  .moon-change{
+    display:flex;
+    padding-left:33%;
+    order:2;
+    width:30%;
+    height:30%;
   }
 
   .horror-intro{
@@ -446,13 +498,20 @@ padding-right: 8%;
   }
 
   .horror-results .see-more-button{
-    margin-left:25%;
+    margin-left:18%;
     padding:1% 6%;
   }
 
   .horror-results .new-search-button{
     margin-left:10%;
     padding:1% 6%;
+  }
+
+  .new-search-button-big{
+    margin-left:36%;
+    padding:1% 6%;
+    border-radius: 40px;
+    background-color: yellow;
   }
 
   .horror-results .center-button{
